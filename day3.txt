@@ -1,0 +1,33 @@
+SELECT * FROM ecommerce;
+-- Create table
+CREATE TABLE online_retail (
+    InvoiceNo TEXT,
+    StockCode TEXT,
+    Description TEXT,
+    Quantity INTEGER,
+    InvoiceDate TEXT,
+    UnitPrice REAL,
+    CustomerID TEXT,
+    Country TEXT
+);
+
+
+INSERT INTO ecommerce VALUES 
+('536365', '85123A', 'WHITE HANGING HEART T-LIGHT HOLDER', 6, '2010-12-01 08:26:00', 2.55, '17850', 'United Kingdom'),
+('536365', '71053', 'WHITE METAL LANTERN', 6, '2010-12-01 08:26:00', 3.39, '17850', 'United Kingdom'),
+('536366', '84406B', 'CREAM CUPID HEARTS COAT HANGER', 8, '2010-12-01 08:28:00', 2.75, '17850', 'United Kingdom');
+
+
+SELECT Country, COUNT(*) AS TotalOrders
+FROM online_retail
+GROUP BY Country
+ORDER BY TotalOrders DESC;
+
+-- Top products by quantity sold
+SELECT Description, SUM(Quantity) AS TotalSold
+FROM online_retail
+GROUP BY Description
+ORDER BY TotalSold DESC
+LIMIT 5;
+
+DROP TABLE online_retail
